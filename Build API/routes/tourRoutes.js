@@ -11,7 +11,7 @@ const {
 
 const tourRouter = express.Router();
 
-tourRouter.param('id', checkID);
+// tourRouter.param('id', checkID);
 
 // Create a checkBody middleware
 // Check if body contains the name and the price property
