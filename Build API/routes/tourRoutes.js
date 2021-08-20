@@ -5,8 +5,6 @@ const {
   createTour,
   updateTour,
   deleteTour,
-  checkID,
-  checkBody,
 } = require('./../controllers/tourController');
 
 const tourRouter = express.Router();
@@ -18,7 +16,7 @@ const tourRouter = express.Router();
 // If not, send back 400 (bad request)
 // Add it to the post handler stack
 
-tourRouter.route('/').get(getAllTours).post(checkBody, createTour);
+tourRouter.route('/').get(getAllTours).post(createTour);
 tourRouter.route('/:id').get(getTour).patch(updateTour).delete(deleteTour);
 
 module.exports = tourRouter;
