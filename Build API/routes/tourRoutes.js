@@ -1,4 +1,5 @@
 const express = require('express');
+const { protect, restrictTo } = require('../controllers/authController');
 const {
   getAllTours,
   getTour,
@@ -23,7 +24,11 @@ tourRouter.route('/monthly-plan/:year').get(getMonthlyPlan);
 // If not, send back 400 (bad request)
 // Add it to the post handler stack
 
-tourRouter.route('/').get(getAllTours).post(createTour);
-tourRouter.route('/:id').get(getTour).patch(updateTour).delete(deleteTour);
+tourRouter.route('/').get(protect, getAllTours).post(createTour);
+tourRouter
+  .route('/:id')
+  .get(getTour)
+  .patch(updateTour)
+  .delete(protect, restrictTo('admin'), deleteTour);
 
 module.exports = tourRouter;
